@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: sosh-price-management-ms
+
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:admin@cluster0.y7aemnv.mongodb.net/soshealth?retryWrites=true&w=majority
+      database: soshealth
+
+server:
+  servlet:
+    context-path: /price-management/v1
+  http2:
+    enabled: true
+  port: 9090
