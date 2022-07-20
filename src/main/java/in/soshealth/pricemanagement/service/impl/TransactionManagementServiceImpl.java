@@ -35,6 +35,9 @@ public class TransactionManagementServiceImpl implements TransactionManagementSe
             return transactionManagementRepository.findTransactionsFilters(transactionStatus.split(","),
                     transactionMode.split(","));
         else
-            return transactionManagementRepository.findTransactionsBySelectiveFilter(transactionStatus, transactionMode);
+            if (Objects.isNull(transactionStatus))
+                return transactionManagementRepository.findTransactionsBySelectiveFilter(new String[] {}, transactionMode.split(","));
+            else
+                return transactionManagementRepository.findTransactionsBySelectiveFilter(transactionStatus.split(","), new String[] {});
     }
 }

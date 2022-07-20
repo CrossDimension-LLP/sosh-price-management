@@ -8,8 +8,8 @@ import reactor.core.publisher.Flux;
 
 @Repository
 public interface TransactionManagementRepository extends ReactiveCrudRepository<TransactionHistory, String> {
-    @Query("{$or:[{transactionStatus: ?0}, {transactionMode: ?1}]}")
-    Flux<TransactionHistory> findTransactionsBySelectiveFilter(String transactionStatus, String transactionMode);
+    @Query("{$or:[{transactionStatus: {$in: ?0}}, {transactionMode: {$in: ?1}}]}")
+    Flux<TransactionHistory> findTransactionsBySelectiveFilter(String [] transactionStatus, String [] transactionMode);
 
     @Query("{$and:[{transactionStatus: {$in: ?0}}, {transactionMode: {$in: ?1}}]}")
     Flux<TransactionHistory> findTransactionsFilters(String [] transactionStatus, String [] transactionMode);
